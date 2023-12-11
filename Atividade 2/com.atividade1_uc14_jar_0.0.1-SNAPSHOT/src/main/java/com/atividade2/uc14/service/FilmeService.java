@@ -25,4 +25,9 @@ public class FilmeService {
     public Filme buscarPorId(Integer id){
         return filmeRepository.findById(id).orElseThrow();
     }
+    
+    public void excluir (Integer id){
+      Filme filmeEncontrado = buscarPorId(id);
+      filmeRepository.deleteById(filmeEncontrado.getId());
+    }
 }
