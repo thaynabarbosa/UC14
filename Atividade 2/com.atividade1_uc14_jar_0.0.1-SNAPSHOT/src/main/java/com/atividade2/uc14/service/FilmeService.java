@@ -2,6 +2,7 @@ package com.atividade2.uc14.service;
 
 import com.atividade2.uc14.model.Filme;
 import com.atividade2.uc14.repository.FilmeRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +18,7 @@ public class FilmeService {
         return film;
     }
     
+    public List<Filme> listarTodos(){
+       return filmeRepository.findAll();
+    } 
 }
