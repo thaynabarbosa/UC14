@@ -21,5 +21,5 @@ public class Analise {
     private Integer id;
     private String filme;
     private String analise;
-    private int nota;
+    private Integer nota;
 }
