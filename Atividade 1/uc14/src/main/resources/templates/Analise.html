@@ -8,15 +8,15 @@
     </head>
     <body>
         <h1>Análise dos filmes</h1>
-        <p>Avalie esse filme</p>
-        <form th:action="@{/avaliacao}" method="post">
+        <form th:action="@{/avaliacao}" th:object="${analiseFilme}" method="post">
             <div>
-                <p>ID:<input type="text" th:field="${filme.id}"/></p>
-                <p>Filme:<input type="text" th:field="${filme.titulo}"/></p>
-                <p>Análise:<input type="text" th:field="${filme.sinopse}"/></p>
-                <p>Nota:<input type="text" th:field="${filme.genero}"/></p>
+                <p>Escreva sua opinião sobre esse filme</p>
+                <!--<p>ID:<input type="text" th:field="${analise.id}"/></p>-->
+                <p>Filme:<input type="text" th:field="${analiseFilme.filme}"/></p>
+               <!-- <p>Análise:<input type="text" th:field="${analiseFilme.analise}"/></p>
+                <p>Nota:<input type="text" th:field="${analiseFilme.nota}"/></p>-->
             </div>
-              <button type="submit">Cadastrar</button>
+            <p><input type="submit" value="Enviar Análise"/></p>
         </form>
     </body>
 </html>

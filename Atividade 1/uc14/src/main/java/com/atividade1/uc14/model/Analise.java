@@ -6,12 +6,13 @@ public class Analise {
     private String filme;
     private String analise;
     private int nota;
+    private Filme filmes;
 
     public Analise() {
 
     }
     
-    public Analise(int id, String filme, String analise, int nota){
+    public Analise(int id, String filme, String analise, int nota, Filme filmes){
         
     }
     
@@ -23,4 +24,6 @@ public class Analise {
     public void setAnalise(String analise) {this.analise = analise;}
     public int getNota() {return nota;}
     public void setNota(int nota) {this.nota = nota;}
+    public Filme getFilmes() {return filmes;}
+    public void setFilmes(Filme filmes) {this.filmes = filmes;}
 }

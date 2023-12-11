@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class FilmeController {
 
     private List<Filme> listafilmes = new ArrayList<>();
+    private List<Analise> listaAnalise = new ArrayList<>();
 
     @GetMapping("/index")
     public String inicio(Model model) {
@@ -46,12 +47,39 @@ public class FilmeController {
                 break;
             }
         }
+        
+        Analise analiseEncontrada = new Analise();
+        
+        for(Analise a: listaAnalise){
+            if(a.getFilmes().getId()==idFilme){
+                analiseEncontrada =a;
+                break;
+            }
+        }
+        
         model.addAttribute("registroFilme", registroEncontrado);
+        model.addAttribute("analiseFilme", analiseEncontrada);
         return "ExibirFilmes";
     }
 
-    /*
+    @PostMapping("/avaliacao")
+    public String cadastrarAnalise(@ModelAttribute Filme filmes,@ModelAttribute Analise analise, Model model) {
+        analise.setId(listaAnalise.size()+1);
+        analise.setFilmes(filmes);
+        listaAnalise.add(analise);
+        //model.addAttribute("analiseFilme",analise);
+        return "redirect:/lista";
+    }
+    
     @GetMapping("/analise")
+    public String analiseFilmes(Model model){
+      //model.addAttribute("analise", new Analise());
+      model.addAttribute("analiseFilme",listaAnalise);
+        return "Analise";
+}    
+    
+ /*   
+   @GetMapping("/analise")
     public String analiseFilmes(Model model, @RequestParam String id) {
         Integer idFilme = Integer.parseInt(id);
         Filme registroEncontrado = new Filme();
@@ -65,7 +93,7 @@ public class FilmeController {
         model.addAttribute("avaliacao", registroEncontrado);
         return "Analise";
     }
-     */
+   */
  /*
     @PostMapping("/avaliacao")
     public String cadastrarAnalise(@ModelAttribute Analise analises, Model model){
