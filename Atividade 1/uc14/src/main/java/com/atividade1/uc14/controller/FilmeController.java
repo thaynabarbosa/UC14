@@ -48,48 +48,33 @@ public class FilmeController {
             }
         }
         Analise analiseEncontrada = new Analise();
-
+        
         for (Analise a : listaAnalise) {
-            if (a.getFilmes().getId() == idFilme) {
+            if (a.getId() == idFilme) {
                 analiseEncontrada = a;
                 break;
             }
         }
-        
+        System.out.println(analiseEncontrada);
         model.addAttribute("registroFilme", registroEncontrado);
         model.addAttribute("analiseFilme", analiseEncontrada);
         return "ExibirFilmes";
     }
 
+    @GetMapping("/formularioAnalises")
+    public String cadastroAnalise(Model model){
+        model.addAttribute("analiseModel", new Analise());
+        return "CadastroAnalise";
+    }
+    
     @PostMapping("/avaliacao")
-    public String cadastrarAnalise(@ModelAttribute Analise analise, Model model) {
+    public String gravarAnalise(Model model,@ModelAttribute Analise analise) {
         analise.setId(listaAnalise.size()+1);
         listaAnalise.add(analise);
-        model.addAttribute("listAvaliacao", listaAnalise);
+        model.addAttribute("analiseModel", listaAnalise);
         return "redirect:/lista";
     }
-    /*
-    @GetMapping("exibir-avaliacao")
-    public String mostraAvaliacao(Model model,@RequestParam String id) {
-        Integer idFilme = Integer.parseInt(id);
-        Filme registroEncontrado = new Filme();
-        for (Filme f : listafilmes) {
-            if (f.getId() == idFilme) {
-                registroEncontrado = f;
-                break;
-            }
-        }
-    
-        model.addAttribute("analises",new Analise());
-        model.addAttribute("registroFilme", registroEncontrado);
-        return "AnaliseFilmes";
-    }*/
- 
-    @GetMapping("/lista-analise")
-    public String listaAnalise(Model model){
-        model.addAttribute("listaA",listaAnalise);
-        return"tabelaAnalises";
-    }
+   
     
 }
 

@@ -22,12 +22,19 @@
                             <div class="row">
                                 <div class="col-sm-6 mt-5">
                                     <h1>Análises do Filme</h1>
-                                                                       
-                                    
-                                    
+
+                                    <div class="row">
+                                        <div  class="col-sm-4">
+                                            <p>ID: <b><span th:text="${analiseFilme.id}"/></b></p>
+                                            <p>Filme: <b><span th:text="${analiseFilme.filme}" /></b></p> 
+                                            <p>Analise: <b><span th:text="${analiseFilme.analise}" /></b></p> 
+                                            <p>Nota: <b><span th:text="${analiseFilme.nota}" /></b></p> 
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div>
-                                             <a th:href="@{/index}"><button type="button" class="btn btn-info">Voltar</button></a>
+                                            <a th:href="@{/index}"><button type="button" class="btn btn-info">Voltar</button></a>
                                         </div>
                                     </div>
 

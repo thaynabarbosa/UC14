@@ -31,12 +31,11 @@
                                             <td th:text="${filmes.genero}"></td>
                                             <td th:text="${filmes.anoLancamento}"></td>
                                             <td><a th:href="@{'/exibir?id=' + ${filmes.id}}">Detalhes</a></td>
-                                            <td><a th:href="@{'/exibir-avaliacao?id=' + ${filmes.id}}">Avaliar</a></td>
+                                            <td><a th:href="@{/formularioAnalises}">Avaliar</a></td>
                                         </tr>
 
                                     </tbody>
                                 </table>
-                                
                                 <a th:href="@{/index}"><button type="button" class="btn btn-info">Voltar</button></a>
                             </body>
                         </div>

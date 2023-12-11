@@ -19,11 +19,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="analise : ${exibir-avaliacao}">
-                                            <td th:text="${analise.id}"></td>
-                                            <td th:text="${analise.filme}"></td>
-                                            <td th:text="${analise.analise}"></td>
-                                            <td th:text="${analise.nota}"></td>
+                                        <tr th:each="analise : ${lista-analise}">
+                                            <td th:text="${listaA.id}"></td>
+                                            <td th:text="${listaA.filme}"></td>
+                                            <td th:text="${listaA.analise}"></td>
+                                            <td th:text="${listaA.nota}"></td>
                                         </tr>
                                     </tbody>
                                 </table>
