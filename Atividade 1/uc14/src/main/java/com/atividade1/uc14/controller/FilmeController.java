@@ -20,7 +20,7 @@ public class FilmeController {
     @GetMapping("/index")
     public String inicio(Model model) {
         model.addAttribute("filme", new Filme());
-        return "cadastroFilmes";
+        return "CadastroFilmes";
     }
 
     @PostMapping("/cadastro")
@@ -47,12 +47,11 @@ public class FilmeController {
                 break;
             }
         }
-        
         Analise analiseEncontrada = new Analise();
-        
-        for(Analise a: listaAnalise){
-            if(a.getFilmes().getId()==idFilme){
-                analiseEncontrada =a;
+
+        for (Analise a : listaAnalise) {
+            if (a.getFilmes().getId() == idFilme) {
+                analiseEncontrada = a;
                 break;
             }
         }
@@ -63,24 +62,15 @@ public class FilmeController {
     }
 
     @PostMapping("/avaliacao")
-    public String cadastrarAnalise(@ModelAttribute Filme filmes,@ModelAttribute Analise analise, Model model) {
+    public String cadastrarAnalise(@ModelAttribute Analise analise, Model model) {
         analise.setId(listaAnalise.size()+1);
-        analise.setFilmes(filmes);
         listaAnalise.add(analise);
-        //model.addAttribute("analiseFilme",analise);
+        model.addAttribute("listAvaliacao", listaAnalise);
         return "redirect:/lista";
     }
-    
-    @GetMapping("/analise")
-    public String analiseFilmes(Model model){
-      //model.addAttribute("analise", new Analise());
-      model.addAttribute("analiseFilme",listaAnalise);
-        return "Analise";
-}    
-    
- /*   
-   @GetMapping("/analise")
-    public String analiseFilmes(Model model, @RequestParam String id) {
+    /*
+    @GetMapping("exibir-avaliacao")
+    public String mostraAvaliacao(Model model,@RequestParam String id) {
         Integer idFilme = Integer.parseInt(id);
         Filme registroEncontrado = new Filme();
         for (Filme f : listafilmes) {
@@ -89,15 +79,17 @@ public class FilmeController {
                 break;
             }
         }
-        //model.addAttribute("avaliacao",new Analise());
-        model.addAttribute("avaliacao", registroEncontrado);
-        return "Analise";
+    
+        model.addAttribute("analises",new Analise());
+        model.addAttribute("registroFilme", registroEncontrado);
+        return "AnaliseFilmes";
+    }*/
+ 
+    @GetMapping("/lista-analise")
+    public String listaAnalise(Model model){
+        model.addAttribute("listaA",listaAnalise);
+        return"tabelaAnalises";
     }
-   */
- /*
-    @PostMapping("/avaliacao")
-    public String cadastrarAnalise(@ModelAttribute Analise analises, Model model){
-        
-    }
-     */
+    
 }
+

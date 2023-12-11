@@ -20,16 +20,14 @@
                                             <p>Gênero: <input type="text" th:field="${filme.genero}"/></p>
                                             <p>Ano de Lançamento: <input type="text" th:field="${filme.anoLancamento}"/></p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-8">
-                                                <button type="submit" class="btn btn-info">Cadastrar</button>
-                                                <a th:href="@{/lista}"><button type="buttom" class="btn btn-info">Lista de Filmes</button></a> 
-                                            </div>
-                                        </div>
-
+                                        <button type="submit" class="btn btn-info">Cadastrar</button>
                                     </form>
+                                    <div class="row">
+                                        <div class="col-sm-8 mt-2">
+                                            <a th:href="@{/lista}"><button type="buttom" class="btn btn-info">Lista de Filmes</button></a> 
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
 
                         </body>

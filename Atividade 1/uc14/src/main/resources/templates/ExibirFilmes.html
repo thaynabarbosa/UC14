@@ -17,25 +17,13 @@
                                     <p>Gênero: <b><span th:text="${registroFilme.genero}" /></b></p> 
                                     <p>Ano de Lançamento: <b><span th:text="${registroFilme.anoLancamento}" /></b></p>  
                                 </div>
-
-                                <div class="col-sm-6 ms-4">
-                                    <form th:action="@{/avaliacao}" th:object="${analiseFilme}" method="post">
-                                        <div>
-                                            <h2>Escreva sua opinião sobre esse filme</h2>
-                                            <!--<p>ID:<input type="text" th:field="${analise.id}"/></p>-->
-                                            <p>Filme: <input type="text" th:field="${analiseFilme.filme}"/></p>
-                                            <p>Análise: <input type="text" th:field="${analiseFilme.analise}"/>
-                                                <p>Nota: <input type="text" th:field="${analiseFilme.nota}"/></p>
-                                        </div>
-                                        <p><input type="submit" value="Enviar Análise" class="btn btn-info"/></p>
-                                    </form>
-                                </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-6 mt-5">
                                     <h1>Análises do Filme</h1>
-                                    <p><b><span th:text="${analiseFilme.analise}" /></b></p> 
+                                                                       
+                                    
                                     
                                     <div class="row">
                                         <div>
