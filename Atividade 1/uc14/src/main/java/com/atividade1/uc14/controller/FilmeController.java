@@ -27,7 +27,7 @@ public class FilmeController {
         filmes.setId(listafilmes.size() + 1);
         listafilmes.add(filmes);
         model.addAttribute("filme", filmes);
-        return "redirect:/index";
+        return "redirect:/lista";
     }
 
     @GetMapping("/lista")
@@ -35,7 +35,22 @@ public class FilmeController {
         model.addAttribute("lista", listafilmes);
         return "listaFilmes";
     }
-/*
+
+    @GetMapping("/exibir")
+    public String mostrarDetalhesFilme(Model model, @RequestParam String id) {
+        Integer idFilme = Integer.parseInt(id);
+        Filme registroEncontrado = new Filme();
+        for (Filme f : listafilmes) {
+            if (f.getId() == idFilme) {
+                registroEncontrado = f;
+                break;
+            }
+        }
+        model.addAttribute("registroFilme", registroEncontrado);
+        return "ExibirFilmes";
+    }
+
+    /*
     @GetMapping("/analise")
     public String analiseFilmes(Model model, @RequestParam String id) {
         Integer idFilme = Integer.parseInt(id);
@@ -50,13 +65,11 @@ public class FilmeController {
         model.addAttribute("avaliacao", registroEncontrado);
         return "Analise";
     }
-    */
-    
-    /*
+     */
+ /*
     @PostMapping("/avaliacao")
     public String cadastrarAnalise(@ModelAttribute Analise analises, Model model){
         
     }
      */
-
 }
