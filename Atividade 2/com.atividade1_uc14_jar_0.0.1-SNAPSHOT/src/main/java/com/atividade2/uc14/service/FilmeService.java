@@ -20,5 +20,9 @@ public class FilmeService {
     
     public List<Filme> listarTodos(){
        return filmeRepository.findAll();
-    } 
+    }
+    
+    public Filme buscarPorId(Integer id){
+        return filmeRepository.findById(id).orElseThrow();
+    }
 }
