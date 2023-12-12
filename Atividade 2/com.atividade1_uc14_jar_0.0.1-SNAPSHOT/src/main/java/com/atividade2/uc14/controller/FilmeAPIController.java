@@ -22,31 +22,31 @@ public class FilmeAPIController {
     @Autowired
     FilmeService filmeService;
     
-    
+    //Cadastrar
     @PostMapping("/adicionar")
     public ResponseEntity<Filme> addFilme(@RequestBody Filme film){
         var novoFilm = filmeService.criar(film);
         return new ResponseEntity<>(novoFilm,HttpStatus.CREATED);
     }
-    
+    //Listar
     @GetMapping("/listar")
     public ResponseEntity<List> listarFilme(){
         List<Filme> filmes = filmeService.listarTodos();
         return new ResponseEntity<>(filmes,HttpStatus.OK);
     }
-    
+    //Buscar
     @GetMapping("/buscar/{id}")
     public ResponseEntity<Filme> pesquisar(@PathVariable Integer id){
         Filme filmeEncontrado = filmeService.buscarPorId(id);
         return new ResponseEntity<>(filmeEncontrado,HttpStatus.OK);
     }
-    
+    //Deletar
     @DeleteMapping("/excluir/{id}")
     public ResponseEntity<?> excluirFilme(@PathVariable Integer id){
         filmeService.excluir(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+    //Atualizar
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<Filme> editarFilme (@PathVariable Integer id,@RequestBody Filme film){
         var editarFilme = filmeService.atualizar(id, film);

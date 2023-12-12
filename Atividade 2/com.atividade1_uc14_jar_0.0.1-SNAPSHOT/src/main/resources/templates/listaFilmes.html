@@ -20,6 +20,8 @@
                                             <th>Gênero</th>
                                             <th>Ano de Lançamento</th>
                                             <th>Detalhes</th>
+                                            <th>Alterar</th>
+                                            <th>Deletar</th>
                                             <th>Avaliar o filme</th>
                                         </tr>
                                     </thead>
@@ -31,6 +33,8 @@
                                             <td th:text="${filmes.genero}"></td>
                                             <td th:text="${filmes.anoLancamento}"></td>
                                             <td><a th:href="@{'/exibir?id=' + ${filmes.id}}">Detalhes</a></td>
+                                            <td><a th:href="@{'/alterar?id=' + ${filmes.id}}">Alterar</a></td>
+                                            <td><a th:href="@{'/excluir?id=' + ${filmes.id}}">Excluir</a></td>
                                             <td><a th:href="@{/formularioAnalises}">Avaliar</a></td>
                                         </tr>
 
