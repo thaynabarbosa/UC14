@@ -9,7 +9,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,17 +20,24 @@ public class FilmeController {
     @Autowired
     FilmeService filmeservice;
     AnaliseService analiseservice;
-    
+
     @GetMapping("/index")
     public String inicio(Model model) {
-       model.addAttribute("filme", new Filme());
+        model.addAttribute("filme", new Filme());
         return "CadastroFilmes";
     }
 
     @PostMapping("/cadastro")
     public String cadastroFilmes(@ModelAttribute Filme filmes, Model model) {
-        filmeservice.criar(filmes);
-        model.addAttribute("filme", filmes);
+
+        if (filmes.getId() != null) {
+            filmeservice.atualizar(filmes.getId(), filmes);
+            model.addAttribute("filme", filmes);
+        } else {
+            filmeservice.criar(filmes);
+            model.addAttribute("filme", filmes);
+        }
+
         return "redirect:/lista";
     }
 
@@ -44,46 +50,44 @@ public class FilmeController {
     @GetMapping("/exibir")
     public String mostrarDetalhesFilme(Model model, @RequestParam String id) {
         Integer idFilme = Integer.parseInt(id);
-        
+
         Filme registroEncontrado = new Filme();
         registroEncontrado = filmeservice.buscarPorId(idFilme);
-        
-        Analise analiseEncontrada = new Analise();
-        analiseEncontrada = analiseservice.buscarPorId(idFilme);
-        
+
+        List<Analise> analiseEncontrada = new ArrayList<>();
+        analiseEncontrada = analiseservice.listarTodos();
+
         model.addAttribute("registroFilme", registroEncontrado);
+        model.addAttribute("analise",new Analise());
         model.addAttribute("analiseFilme", analiseEncontrada);
         return "ExibirFilmes";
     }
 
     @GetMapping("/formularioAnalises")
-    public String cadastroAnalise(Model model){
+    public String cadastroAnalise(Model model) {
         model.addAttribute("analiseModel", new Analise());
         return "CadastroAnalise";
     }
-   
+
     @PostMapping("/avaliacao")
-    public String gravarAnalise(Model model,@ModelAttribute Analise analise) {
-        //analise.setId(listaAnalise.size()+1);
-      //  listaAnalise.add(analise);
+    public String gravarAnalise(Model model, @ModelAttribute Analise analise) {
         analiseservice.criar(analise);
         model.addAttribute("analiseModel", analise);
         return "redirect:/lista";
     }
-   
+
     @GetMapping("/excluir")
     public String deletaFilme(Model model, @RequestParam String id) {
         Integer idFilme = Integer.parseInt(id);
         filmeservice.excluir(idFilme);
         return "redirect:/lista";
     }
-    
+
     @GetMapping("/alterar")
     public String alterarFilme(Model model, @RequestParam String id) {
         Integer idFilme = Integer.parseInt(id);
         Filme filmeencontrado = filmeservice.buscarPorId(idFilme);
-        model.addAttribute("filme",filmeencontrado);
+        model.addAttribute("filme", filmeencontrado);
         return "alterar";
     }
 }
-
