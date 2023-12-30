@@ -35,7 +35,7 @@
                                             <td><a th:href="@{'/exibir?id=' + ${filmes.id}}">Detalhes</a></td>
                                             <td><a th:href="@{'/alterar?id=' + ${filmes.id}}">Alterar</a></td>
                                             <td><a th:href="@{'/excluir?id=' + ${filmes.id}}">Excluir</a></td>
-                                            <td><a th:href="@{/formularioAnalises}">Avaliar</a></td>
+                                            <td><a th:href="@{'/formularioAnalises?id' + ${filmes.id}}">Avaliar</a></td>
                                         </tr>
 
                                     </tbody>

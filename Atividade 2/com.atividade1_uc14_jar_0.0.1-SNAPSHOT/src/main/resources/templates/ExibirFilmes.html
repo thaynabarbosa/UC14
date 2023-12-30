@@ -25,10 +25,15 @@
 
                                     <div class="row">
                                         <div  class="col-sm-4">
-                                            <p>ID: <b><span th:text="${analiseFilme.id}"/></b></p>
-                                            <p>Filme: <b><span th:text="${analiseFilme.filme}" /></b></p> 
-                                            <p>Analise: <b><span th:text="${analiseFilme.analise}" /></b></p> 
-                                            <p>Nota: <b><span th:text="${analiseFilme.nota}" /></b></p> 
+                                            <ul>
+                                                <li th:each="a : ${analiseFilme}">
+                                                    <p>ID: <b><span th:text="${a.id}"/></b></p>
+                                                    <p>Filme: <b><span th:text="${a.filme}" /></b></p> 
+                                                    <p>Analise: <b><span th:text="${a.analise}" /></b></p> 
+                                                    <p>Nota: <b><span th:text="${a.nota}" /></b></p> 
+                                                </li>
+                                            </ul>
+
                                         </div>
                                     </div>
 

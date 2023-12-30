@@ -55,7 +55,7 @@ public class FilmeController {
         registroEncontrado = filmeservice.buscarPorId(idFilme);
 
         List<Analise> analiseEncontrada = new ArrayList<>();
-        analiseEncontrada = analiseservice.listarTodos();
+        analiseEncontrada = analiseservice.listarTodos(idFilme);
 
         model.addAttribute("registroFilme", registroEncontrado);
         model.addAttribute("analise",new Analise());
@@ -70,7 +70,8 @@ public class FilmeController {
     }
 
     @PostMapping("/avaliacao")
-    public String gravarAnalise(Model model, @ModelAttribute Analise analise) {
+    public String gravarAnalise(@ModelAttribute Filme filme, @ModelAttribute Analise analise, Model model) {
+        analise.setFilmes(filme);
         analiseservice.criar(analise);
         model.addAttribute("analiseModel", analise);
         return "redirect:/lista";

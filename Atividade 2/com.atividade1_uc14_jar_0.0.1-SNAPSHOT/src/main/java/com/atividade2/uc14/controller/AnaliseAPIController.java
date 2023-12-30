@@ -2,7 +2,6 @@ package com.atividade2.uc14.controller;
 
 
 import com.atividade2.uc14.model.Analise;
-import com.atividade2.uc14.model.Filme;
 
 import com.atividade2.uc14.service.AnaliseService;
 import java.util.List;
@@ -30,17 +29,11 @@ public class AnaliseAPIController {
         var novaAnalise = analiseService.criar(analises);
         return new ResponseEntity<>(novaAnalise,HttpStatus.CREATED);
     }
-    
-    @GetMapping("/listar")
-    public ResponseEntity<List> listarAnalise(){
-        List<Analise> analises = analiseService.listarTodos();
-        return new ResponseEntity<>(analises,HttpStatus.OK);
-    }
-    
+  
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<Analise> pesquisar(@PathVariable Integer id){
-        Analise analiseEncontrada = analiseService.buscarPorId(id);
-        return new ResponseEntity<>(analiseEncontrada,HttpStatus.OK);
+    public ResponseEntity<List> pesquisar(@PathVariable Integer id){
+        List<Analise> lista = analiseService.listarTodos(id);
+        return new ResponseEntity<>(lista, HttpStatus.OK);
     }
     
     @DeleteMapping("/excluir/{id}")

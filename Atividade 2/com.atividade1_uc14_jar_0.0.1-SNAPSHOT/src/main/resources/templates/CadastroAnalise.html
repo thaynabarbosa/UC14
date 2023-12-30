@@ -13,6 +13,7 @@
                             <p>Filme: <input type="text" th:field="${analiseModel.filme}"/></p>
                             <p>Analise: <input type="text" th:field="${analiseModel.analise}"/></p>
                             <p>Nota: <input type="text" th:field="${analiseModel.nota}"/></p>
+                            <input type="hidden" th:field="${filme.id}">
                             <p><input type="submit" value="Cadastrar" class="btn btn-info"/></p>
                         </form>
                         <a th:href="@{/index}"><button type="button" class="btn btn-info">Voltar</button></a>

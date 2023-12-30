@@ -2,7 +2,7 @@ package com.atividade2.uc14.service;
 
 
 import com.atividade2.uc14.model.Analise;
-import com.atividade2.uc14.model.Filme;
+
 import com.atividade2.uc14.repository.AnaliseRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,8 @@ public class AnaliseService {
         return analis;
     }
     
-    public List<Analise> listarTodos(){
-       return analiseRepository.findAll();
+    public List<Analise> listarTodos(Integer id){
+       return analiseRepository.findByFilmesId(id);
     }
     
     public Analise buscarPorId(Integer id){
@@ -38,7 +38,7 @@ public class AnaliseService {
         analiseEncontrada.setFilme(analiseAtualizada.getFilme());
         analiseEncontrada.setAnalise(analiseAtualizada.getAnalise());
         analiseEncontrada.setNota(analiseAtualizada.getNota());
-        analiseRepository.save( analiseEncontrada);
+        analiseRepository.save(analiseEncontrada);
         return analiseEncontrada;
     }
 }
